@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <span>Spiele</span>
+  <span class="spacer"></span>
+  <mat-form-field class="search">
+    <input matInput [(value)]="searchString">
+    <fa name="search" matSuffix></fa>
+  </mat-form-field>
+</mat-toolbar>
+<mat-list>
+  <mat-list-item *ngFor="let game of games">
+    {{game.title}}
+  </mat-list-item>
+</mat-list>
