@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {GamesService} from "../games.service";
 import {Game} from "../types/Game";
 import {Router} from "@angular/router";
@@ -10,22 +10,29 @@ import {Router} from "@angular/router";
 })
 export class GamelistComponent implements OnInit {
 
-    private get games(): Array<Game> {
-        return this.gamesService.games
+    public get games(): Array<Game> {
+        return this.gamesService.games.filter((game: Game) => {
+            return game.title.includes(this._searchString)
+        })
     }
 
-    public searchString: string = ''
+    private _searchString: string = ''
+
+    public set searchString(s: string) {
+        console.log(s)
+        this._searchString = s || ''
+    }
+
+    public get searchString(): string {
+        return this._searchString
+    }
 
     constructor(
         private gamesService: GamesService,
-        private router: Router) {
-    }
+        private router: Router,
+        private changeDetectorRef: ChangeDetectorRef
+    ) {}
 
     ngOnInit() {
     }
-
-    public navigateToGame(game) {
-        this.router.navigateByUrl('game/' + game.id)
-    }
-
 }

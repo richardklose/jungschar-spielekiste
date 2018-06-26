@@ -9,36 +9,38 @@ import {GamelistComponent} from './gamelist/gamelist.component';
 import {GamesService} from "./games.service";
 import {HttpClientModule} from "@angular/common/http";
 import {GameviewComponent} from './gameview/gameview.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GamelistComponent,
-    GameviewComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AngularFontAwesomeModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    MatInputModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: GamelistComponent
-      },
-      {
-        path: 'game/:id',
-        component: GameviewComponent
-      }
-    ])
-  ],
-  providers: [GamesService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        GamelistComponent,
+        GameviewComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        AngularFontAwesomeModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatInputModule,
+        FormsModule,
+        RouterModule.forRoot([
+            {
+                path: '',
+                component: GamelistComponent
+            },
+            {
+                path: 'game/:id',
+                component: GameviewComponent
+            }
+        ])
+    ],
+    providers: [GamesService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
